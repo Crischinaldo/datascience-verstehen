@@ -19,9 +19,12 @@
     <description>Webapi built with Spring Boot and Hibernate</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>14.1</java.version>
         <keycloak.version>11.0.0</keycloak.version>
+        <hibernate-jpamodelgen.version>5.4.19.Final</hibernate-jpamodelgen.version>
     </properties>
+
+
 
     <dependencies>
         <dependency>
@@ -92,6 +95,15 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-jpamodelgen -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${hibernate-jpamodelgen.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -119,11 +131,7 @@
             <version>4.0.0.Final</version>
         </dependency>
 
-
-
-
     </dependencies>
-
 
     <dependencyManagement>
         <dependencies>
@@ -136,13 +144,24 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                    </compilerArguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>
