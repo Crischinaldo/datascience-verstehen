@@ -1,9 +1,10 @@
 package org.web.restapi.exception;
 
-public class UserNotFoundException extends Exception {
+public class UserNotFoundException extends BaseApiException {
 
-
-    public UserNotFoundException(long id) {
-
+    public UserNotFoundException(String message) {
+        super(message);
     }
+
+
 }
