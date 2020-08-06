@@ -20,24 +20,24 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="giftSeq")
     @Column(name = "id")
-    private int id;
+    private Long id;
 
-    @Email(message = "Email must be valid value")
-    @NotNull
+    @Email(message = "Email can not be null")
+    @NotNull(message = "Email must be entered")
     private String email;
 
     @Column(name = "first_name")
-    @NotNull(message = "Firstname cannot be Null")
+    @NotNull(message = "Firstname can not be null")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotNull(message = "Lastname cannot be Null")
+    @NotNull(message = "Lastname can not be null")
     private String lastName;
 
     @Min(value = 18, message = "Age should not be less than 18")
     @Max(value = 150, message = "Age should not be greater than 150")
     @Column(name = "age")
-    @NotNull(message = "age cannot be Null")
+    @NotNull(message = "Age cannot be null")
     private int age;
 
     @Column(name = "birth_date")
@@ -66,11 +66,11 @@ public class User{
         this.age = age;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
