@@ -11,8 +11,8 @@ import javax.persistence.criteria.Root;
 
 public class UserSpecifications {
 
-    public static Specification<User> getUsersByFirstNameSpec(String firstName) {
-        return new Specification<User>() {
+    public static Specification<User> getUsersByFirstName(String firstName) {
+        Specification<User> specification = new Specification<User>() {
             @Override
             public Predicate toPredicate(Root<User> root,
                                          CriteriaQuery<?> query,
@@ -20,9 +20,10 @@ public class UserSpecifications {
                 return criteriaBuilder.equal(root.get(User_.firstName), firstName);
             }
         };
+        return specification;
     }
 
-    public static Specification<User> getUserByIDSpec(Long id) {
+    public static Specification<User> getUserByID(Long id) {
         return new Specification<User>() {
             @Override
             public Predicate toPredicate(Root<User> root,
