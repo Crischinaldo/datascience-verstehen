@@ -22,7 +22,7 @@ public class UserSpecifications {
         };
     }
 
-    public static Specification<User> getUserByFirstNameSpec(Long id) {
+    public static Specification<User> getUserByIDSpec(Long id) {
         return new Specification<User>() {
             @Override
             public Predicate toPredicate(Root<User> root,
